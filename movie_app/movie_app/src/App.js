@@ -23,7 +23,7 @@ const movieImg =[
 const movies=[
 
   { 
-    title: "Matrix" ,
+    title: "Matrix2" ,
     poster: "http://cfile2.uf.tistory.com/image/03217F4A509D113526C558" 
   },
   { 
@@ -44,7 +44,7 @@ const movies=[
 
 
 class App extends Component {
-  render() { //dfdfddfdfdf//sdfsdf
+  render() { 
     return ( 
       
       <div className="App">
