@@ -12,8 +12,10 @@ class App extends Component {
   
   componentDidMount(){
     
-    fetch('https://yts.ag/api/v2/list_movies.json?sort_by')
-    
+    fetch('https://yts.ag/api/v2/list_movies.json?sort_by=like_count')
+    .then(response => response.json())
+    .then(json => console.log(json))
+    .catch(err => console.log(err))
   }
 
   _renderMovies = () =>{
@@ -33,6 +35,5 @@ class App extends Component {
 }
 
 export default App;
-
 
 
