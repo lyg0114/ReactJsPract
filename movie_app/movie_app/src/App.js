@@ -14,7 +14,7 @@ class App extends Component {
   
   componentDidMount(){
     
-    setTimeout(()=>{
+    setTimeout( ()=>{
       
       this.setState({
         
@@ -49,7 +49,7 @@ class App extends Component {
   }
 
   _renderMovies = () =>{
-    const movies = this.state.movies.map((movie,index) =>{ 
+    const movies = this.state.movies.map( (movie,index) =>{ 
       return <Movie title={movie.title} poster={movie.poster} key={index} />
     })
     return movies
