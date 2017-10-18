@@ -8,19 +8,14 @@ class App extends Component {
   state = {}
   
   componentDidMount(){
+    
     this._getMovies();
     
   }
-  _renderMovies = () =>{
-    const movies = this.state.movies.map(movie =>{ 
-      return <Movie title={movie.title} poster={movie.large_cover_image} key={movie.id} />
-    })
-    return movies
-  }
-
-  _getMovies = async () => {
+  
+  _getMovies = async () => { //비동기적으로 실행되는 함수
     
-    const movies = await this._callApi()
+    const movies = await this._callApi() //api를 받아와서 movies에다가 저장
     this.setState({
         movies
       })
@@ -33,6 +28,27 @@ class App extends Component {
     .then(json => json.data.movies)
     .catch(err => console.log(err))
 }
+
+
+  _renderMovies = () =>{
+    const movies = this.state.movies.map(
+              movie =>{ 
+                console.log(movie);
+                return <Movie 
+                  title={movie.title_english} 
+                  poster={movie.medium_cover_image}
+                  key={movie.id} 
+                  genres={movie.genres} 
+                  synopsis = {movie.synopsis}
+                  />
+              }
+          
+      )
+
+    return movies
+  }
+
+  
 
   render() { 
     return ( 
