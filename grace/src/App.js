@@ -4,20 +4,12 @@ import './App.css';
 
 class Square extends Component {
 
-  constructor(){
-    super();
-    this.state={
-      value: null,
-    };
-
-  }
-  
   render(){
     return(
       <button className="square" 
-      onClick={() => this.setState({value: 'X'})}>
+      onClick={() => this.props.onClick()}>
       
-      {this.state.value}
+      {this.props.value}
       
       </button>
     )
@@ -26,8 +18,24 @@ class Square extends Component {
 }
 
 class App extends Component {
-  ShowData(i){
-    return <Square />;  
+  
+  constructor(props){ //생성자
+    super(props);
+    this.state = {
+      squares: Array(9).fill(null), //9개의 비어있는 배열
+    }
+  }
+  
+  handleClick(i) {
+    const squares = this.state.squares.slice();
+    squares[i] = 'X';
+    this.setState({squares: squares});
+  }
+
+  renderSquare(i){
+    return <Square value={this.state.squares[i]}
+                  onClick={() => this.handleClick(i)}
+    />;  
   }
   render() {
     
@@ -40,21 +48,13 @@ class App extends Component {
       </li>
       
       <div className="row">
-        {this.ShowData(1)}
-        {this.ShowData(2)}
-        {this.ShowData(3)}
+        {this.renderSquare(0)}{this.renderSquare(1)}{this.renderSquare(2)}
       </div>
-      
       <div className="row">
-        {this.ShowData(4)}
-        {this.ShowData(5)}
-        {this.ShowData(6)}
+        {this.renderSquare(3)}{this.renderSquare(4)}{this.renderSquare(5)}
       </div>
-      
       <div className="row">
-        {this.ShowData(7)}
-        {this.ShowData(8)}
-        {this.ShowData(9)}
+        {this.renderSquare(6)}{this.renderSquare(7)}{this.renderSquare(8)}
       </div>
       
        
