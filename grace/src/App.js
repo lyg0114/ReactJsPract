@@ -2,20 +2,6 @@ import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
 
-/*
-class Square extends Component { //controlled components.
-
-  render(){
-    return(
-      <button className="square" 
-      onClick={() => this.props.onClick()}>
-      {this.props.value}
-      </button>
-    )
-  }
-
-}
-*/
 
 function Square(props) {
   return (
@@ -23,6 +9,26 @@ function Square(props) {
       {props.value}
     </button>
   );
+}
+
+function calculateWinner(squares) { //승자 정하기
+  const lines = [
+    [0, 1, 2],
+    [3, 4, 5],
+    [6, 7, 8],
+    [0, 3, 6],
+    [1, 4, 7],
+    [2, 5, 8],
+    [0, 4, 8],
+    [2, 4, 6],
+  ];
+  for (let i = 0; i < lines.length; i++) {
+    const [a, b, c] = lines[i];
+    if (squares[a] && squares[a] === squares[b] && squares[a] === squares[c]) {
+      return squares[a]; //승자가 정해진 경우
+    }
+  }
+  return null;
 }
 
 
@@ -39,6 +45,11 @@ class App extends Component {
   
   handleClick(i) {
     const squares2 = this.state.squares1.slice(); //state를 복사해서 사용!!
+    
+    if (calculateWinner(squares2) || squares2[i]) { 
+      return; //승자가 정해지면 게임이 더이상 진행되지 않도록 설정!!!
+    }
+
     squares2[i] =  this.state.xIsNext ? 'X' : 'O'; //squares2[i] 
     this.setState({squares1: squares2 ,
                    xIsNext: !this.state.xIsNext,
@@ -51,7 +62,14 @@ class App extends Component {
  
   render() {
     
-    const status = 'Next player: ' + (this.state.xIsNext ? 'X' : 'O');
+    const winner = calculateWinner(this.state.squares1);
+    let status;
+    if (winner) {
+      status = 'Winner: ' + winner;
+    } else {
+      status = 'Next player: ' + (this.state.xIsNext ? 'X' : 'O');
+    }
+
     
     return (
       
