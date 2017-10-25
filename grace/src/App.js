@@ -2,47 +2,38 @@ import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
 
-/*
-class Square extends Component { //controlled components.
+class Square extends Component {
 
   render(){
     return(
       <button className="square" 
       onClick={() => this.props.onClick()}>
+      
       {this.props.value}
+      
       </button>
     )
   }
 
 }
-*/
-
-function Square(props) {
-  return (
-    <button className="square" onClick={props.onClick}>
-      {props.value}
-    </button>
-  );
-}
-
 
 class App extends Component {
   
   constructor(props){ //생성자
     super(props);
     this.state = {
-      squares1: Array(9).fill(null), //9개의 비어있는 배열
+      squares: Array(9).fill(null), //9개의 비어있는 배열
     }
   }
   
   handleClick(i) {
-    const squares2 = this.state.squares1.slice();
-    squares2[i] = 'X';
-    this.setState({squares1: squares2});
+    const squares = this.state.squares.slice();
+    squares[i] = 'X';
+    this.setState({squares: squares});
   }
 
   renderSquare(i){
-    return <Square value={this.state.squares1[i]}
+    return <Square value={this.state.squares[i]}
                   onClick={() => this.handleClick(i)}
     />;  
   }
