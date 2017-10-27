@@ -1,13 +1,14 @@
 import React, { Component } from 'react';
+import {Button} from 'react-bootstrap';
 import logo from './logo.svg';
 import './App.css';
 
 
 function Square(props) {
   return (
-    <button className="square" onClick={props.onClick}>
+    <Button bsStyle="success" className="square" onClick={props.onClick}>
       {props.value}
-    </button>
+    </Button>
   );
 }
 
@@ -74,6 +75,8 @@ class App extends Component {
     return (
       
     <div>
+      
+      <div id="title">
       <li>
         {status}
       </li>
@@ -87,8 +90,7 @@ class App extends Component {
       <div className="row">
         {this.renderSquare(6)}{this.renderSquare(7)}{this.renderSquare(8)}
       </div>
-      
-       
+    </div>
     </div>
       
 
