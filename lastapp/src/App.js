@@ -1,18 +1,12 @@
-import React, { Component } from 'react';
-import { Navbar, Jumbotron, Button } from 'react-bootstrap';
-import logo from './logo.svg';
-import './App.css';
+import React from 'react'
+import Header from './Header'
+import Main from './Main'
 
-class App extends Component {
-  render() {
-    return (
-      <div className="App">
-        <div className="DashBoard">
-          
-        </div>
-      </div>
-    );
-  }
-}
+const App = () => (
+  <div>
+    <Header />
+    <Main />
+  </div>
+)
 
-export default App;
+export default App
